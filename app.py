@@ -29,27 +29,22 @@ def transcribe():
             text = f"Error with speech recognition service: {e}"
 
     os.remove(temp_path)
+    Cola.encolar(text)
     return jsonify({'text': text})
 
 @app.route('/cola', methods=['GET'])
 def obtener_cola():
-    return jsonify({'cola': Cola.items[::-1]})  
+    return jsonify({'cola': Cola.items})
 
-@app.route('/cola', methods=['POST'])
-def encolar():
-    data = request.get_json()
-    item = data.get('item')
-    if item:
-        Cola.encolar(item)
-        return jsonify({'success': True})
-    return jsonify({'success': False, 'error': 'No item provided'}), 400
-
-@app.route('/cola', methods=['DELETE'])
+@app.route('/desencolar', methods=['POST'])
 def desencolar():
-    if not Cola.is_empty():
-        desencolado = Cola.desencolar()
-        return jsonify({'success': True, 'item': desencolado})
-    return jsonify({'success': False, 'error': 'Cola vacía'}), 400
+    if Cola.is_empty():
+        return jsonify({'error': 'La cola esta vacia'}), 400
+    item = Cola.desencolar()
+    return jsonify({'item': item})
+
+
+    return jsonify({'cola': Cola.items[::-1]})  
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -8,10 +8,8 @@ const stopButton = document.getElementById('stopButton');
 const transcription = document.getElementById('transcription');
 const colaLista = document.getElementById('colaLista');
 
-async function actualizarColaHTML() {
-    const response = await fetch('/cola');
-    const data = await response.json();
-    const cola = data.cola;
+
+function actualizarColaHTML() {
     colaLista.innerHTML = '';
     cola.forEach((item, index) => {
         const li = document.createElement('li');
@@ -41,15 +39,6 @@ recordButton.addEventListener('click', async () => {
         });
         const result = await response.json();
         transcription.value = result.text;
-
-        if (result.text && result.text.trim() !== "") {
-            await fetch('/cola', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ item: result.text })
-            });
-            await actualizarColaHTML();
-        }
 
         stream.getTracks().forEach(track => track.stop());
     };
