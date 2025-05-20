@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transcripcion de audio</title>
+    <style>
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            background: linear-gradient(120deg, #a8c4f8, #d2e4fd);
+            text-align: left;
+            padding: 60px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            color: #29323a;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        
+        button {
+            padding: 12px 28px;
+            margin: 10px 8px;
+            border: none;
+            border-radius: 8px;
+            background: #4a7196;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        textarea {
+            width: 80%;
+            height: 200px;
+            margin-top: 20px;
+            background:transparent;
+            border: 1.5px solid #2d5c88; 
+            color: #e1f1ff; 
+            font-size: 1.1rem; 
+            padding: 12px; 
+            border-radius: 8px; 
+            resize: none; 
+        }
+            #colaLista {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        #colaLista li {
+            background: #e0eafc;
+            color: #2d5c88;
+            margin-bottom: 8px;
+            padding: 10px 14px;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px 0 rgba(31, 38, 135, 0.05);
+            text-align: center;
+            font-size: 1rem;
+
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Transcripcion de audio</h1>
+    <button id="recordButton">🎤Grabar voz</button>
+    <button id="stopButton" disabled>❌Dejar de grabar</button>
+    <br>
+    
+    <textarea id="transcription" readonly placeholder=""></textarea>
+    
+    <h2>Cola</h2>
+    <ul id="colaLista"></ul>
+    <script src="/static/script.js"></script>
+    
+</body>
+
+</html>
